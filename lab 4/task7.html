@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-left: 10px;
+      display: none;
+    }
+    input:valid {
+      background-color: white;
+    }
+  </style>
+  <body>
+    <form
+      id="regForm"
+      onsubmit="return validateForm(event)"
+    >
+      <label>Full Name:</label>
+      <input
+        type="text"
+        id="fullName"
+        placeholder="Enter your Name"
+        onfocus="styleInput(this, true)"
+        onblur="validateName(this)"
+      />
+      <span id="nameError" class="error">Invalid name (must be > 3 chars)</span
+      ><br /><br />
+
+      <label>Email:</label>
+      <input type="email" id="email" /><br /><br />
+
+      <label>Password:</label>
+      <input type="password" id="pass"/><br /><br />
+
+      <label>Repeat Password:</label>
+      <input
+        type="password"
+        id="repeatPass"
+        onblur="validateMatch()"
+      />
+      <span id="passError" class="error">Passwords do not match</span
+      ><br /><br />
+
+      <input type="submit" value="Register" />
+    </form>
+
+    <script>
+      function styleInput(element, isFocus) {
+        if (isFocus) {
+          element.style.border = "solid 1px blue";
+        } else {
+          element.style.border = "";
+        }
+      }
+
+      function validateName(element) {
+        styleInput(element, false); 
+        var errorSpan = document.getElementById("nameError");
+
+        if (element.value.length < 3) {
+          errorSpan.style.display = "inline";
+          element.style.backgroundColor = "gray";
+          element.focus();
+          element.select();
+        } else {
+          errorSpan.style.display = "none";
+          element.style.backgroundColor = "white"; 
+        }
+      }
+
+      function validateMatch() {
+        var pass = document.getElementById("pass").value;
+        var repeat = document.getElementById("repeatPass").value;
+        var errorSpan = document.getElementById("passError");
+
+        if (pass !== repeat) {
+          errorSpan.style.display = "inline";
+        } else {
+          errorSpan.style.display = "none";
+        }
+      }
+
+      function validateForm(event) {
+        var name = document.getElementById("fullName").value;
+        var pass = document.getElementById("pass").value;
+        var repeat = document.getElementById("repeatPass").value;
+
+        if (name.length < 3 || pass !== repeat) {
+          event.preventDefault(); 
+          alert("Plz correct the validation errors first.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>

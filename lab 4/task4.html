@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table { border-collapse: collapse; }
+  td { vertical-align: top; padding: 10px; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+
+<p id="textPara" style="border: 1px solid black; padding: 10px;">
+  Here is a paragraph of text that changes styles dynamically.
+</p>
+
+<table>
+  <tr>
+    <td>
+      <strong>Font Family</strong><br>
+      <input type="radio" name="font" value="arial" onclick="changeStyle('fontFamily', 'Arial')"> Arial<br>
+      <input type="radio" name="font" value="courier" onclick="changeStyle('fontFamily', 'Courier')"> Courier<br>
+    </td>
+    <td>
+      <strong>Text Align</strong><br>
+      <input type="radio" name="align" value="left" onclick="changeStyle('textAlign', 'left')"> Left<br>
+      <input type="radio" name="align" value="center" onclick="changeStyle('textAlign', 'center')"> Center<br>
+      <input type="radio" name="align" value="right" onclick="changeStyle('textAlign', 'right')"> Right<br>
+    </td>
+    <td>
+      <strong>Line Height</strong><br>
+      <input type="radio" name="height" value="normal" onclick="changeStyle('lineHeight', 'normal')"> Normal<br>
+      <input type="radio" name="height" value="1.5" onclick="changeStyle('lineHeight', '1.5')"> 1.5<br>
+      <input type="radio" name="height" value="2" onclick="changeStyle('lineHeight', '2.0')"> 2.0<br>
+    </td>
+     <td>
+      <strong>Text Transform</strong><br>
+      <input type="radio" name="transform" value="none" onclick="changeStyle('textTransform', 'none')"> None<br>
+      <input type="radio" name="transform" value="uppercase" onclick="changeStyle('textTransform', 'uppercase')"> Uppercase<br>
+    </td>
+  </tr>
+</table>
+
+<script>
+  function changeStyle(property, value) {
+    var p = document.getElementById("textPara");
+    p.style[property] = value; 
+  }
+</script>
+
+</body>
+</html>

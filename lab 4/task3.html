@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple To Do List</title>
+    <style>
+      .task-row {
+        margin-bottom: 5px;
+      }
+      .done-text {
+        text-decoration: line-through; 
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="newTaskInput" placeholder="Enter task..." />
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <hr />
+
+    <div id="taskList"></div>
+
+    <script>
+      function addTask() {
+        var input = document.getElementById("newTaskInput");
+        var taskValue = input.value;
+
+        if (taskValue === "") {
+          alert("Please write a task first!");
+          return;
+        }
+
+        var row = document.createElement("div");
+        row.className = "task-row";
+
+        var taskTxt = document.createElement("span");
+        taskTxt.innerText = taskValue + " "; 
+
+        var doneBtn = document.createElement("button");
+        doneBtn.innerText = "Done";
+        doneBtn.onclick = function () {
+          if (taskTxt.classList.contains("done-text")) {
+            taskTxt.classList.remove("done-text");
+          } else {
+            taskTxt.classList.add("done-text");
+          }
+        };
+
+        var delBtn = document.createElement("button");
+        delBtn.innerText = "Delete";
+        delBtn.onclick = function () {
+          document.getElementById("taskList").removeChild(row);
+        };
+
+        row.appendChild(taskTxt);
+        row.appendChild(doneBtn);
+        row.appendChild(delBtn);
+
+        document.getElementById("taskList").appendChild(row);
+
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>

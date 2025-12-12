@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BOM Tasks</title>
+</head>
+<body>
+<button onclick="startFlying()">Start Flying Window</button>
+<button onclick="stopFlying()">Stop Flying</button>
+<br><br>
+
+<button onclick="showTyping()">Show Typing Window</button>
+<br><br>
+
+<button onclick="openAd()">Open Scrollable Ad</button>
+
+<script>
+// 1) Flying Child Window
+
+let flyWin;
+let flyTimer;
+let direction = 1;
+
+function startFlying() {
+    flyWin = window.open("", "", "width=300,height=200");
+    flyWin.document.write("<h3>Flying Window</h3>");
+
+    let topPos = 0;
+
+    flyTimer = setInterval(() => {
+        if (!flyWin || flyWin.closed) return;
+
+        topPos += 5 * direction;
+
+        if (topPos >= screen.height - 250 || topPos <= 0) {
+            direction *= -1;
+        }
+
+        flyWin.moveTo(500, topPos);
+        flyWin.focus();
+    }, 40);
+}
+
+function stopFlying() {
+    clearInterval(flyTimer);
+}
+
+// 2) Typing Message + Close
+
+function showTyping() {
+    let win = window.open("", "", "width=300,height=200");
+    let msg = "Hello, this is a typing effect message.";
+    let i = 0;
+
+    let typing = setInterval(() => {
+        if (i < msg.length) {
+            win.document.body.innerHTML += msg[i];
+            i++;
+        } else {
+            clearInterval(typing);
+
+            setTimeout(() => {
+                win.close();
+            }, 3000);
+        }
+    }, 80);
+}
+
+// Scrollable Advertising Window
+function openAd() {
+    let ad = window.open("", "", "width=300,height=200");
+
+    ad.document.write(`
+        <div style="width:100%; height:100%; overflow-y:scroll; padding:10px;">
+            <h2>Advertisement</h2>
+            <p>Buy one get one free!</p>
+            <p>Sale 70% Off!</p>
+            <p>New arrivals available now.</p>
+            <p>Scrolling ad content...</p>
+            <p>Ads content</p>
+            <p>More content</p>
+            <p>More ads content</p>
+        </div>
+    `);
+}
+</script>
+
+</body>
+</html>

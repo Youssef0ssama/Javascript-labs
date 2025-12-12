@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Manipulation Task</title>
+  </head>
+  <body>
+    <div id="header">
+      <img
+        src="D:\youssef\photos\background.jpg"
+        alt="hello"
+        style="width: 200px; height: 200px"
+      />
+    </div>
+
+    <div id="navigation">
+      <ul id="nav">
+        <li><strong>Memo</strong></li>
+        <li><a href="Articles.html">Articles</a></li>
+        <li><a href="Photos.html">Photos</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Clients.html">Clients</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <script>
+      var header = document.getElementById("header");
+      var nav = document.getElementById("navigation");
+      
+      var topImage = header.cloneNode(true);
+      topImage.style.textAlign = "right";
+      document.body.appendChild(topImage);
+
+      nav.style.textAlign = "center";
+      document.body.appendChild(nav);
+
+      var bottomImage = header.cloneNode(true);
+      bottomImage.style.textAlign = "left";
+      document.body.appendChild(bottomImage);
+    </script>
+  </body>
+</html>

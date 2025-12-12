@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="container" style="border: 1px solid black; padding: 10px;">
+  <p>This is a paragraph inside the div.</p>
+</div>
+
+<button onclick="addAndCount()">Add Image & Count</button>
+<button onclick="removeImg()">Remove Image</button>
+
+<script>
+  function addAndCount() {
+    // 1. Create image node
+    var img = document.createElement("img");
+    
+    // 2. Set source attribute
+    img.setAttribute("src", "D:/youssef/photos/537731207_1535005790814844_4375169288172930374_n.jpg"); 
+    img.setAttribute("id", "myImage");
+
+    // 3. Append to div
+    var container = document.getElementById("container");
+    container.appendChild(img); 
+
+    // 4. Alert number of child nodes
+    alert("Number of child nodes: " + container.childNodes.length); 
+  }
+
+  function removeImg() {
+    var container = document.getElementById("container");
+    var img = document.getElementById("myImage");
+    if (img) {
+      container.removeChild(img);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div>
+  <img id="slideImg" src="" width="200" height="200" alt="Slide">
+  <p id="descText"></p>
+  <button onclick="prevSlide()">Previous</button> <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+  var images = ["D:/youssef/photos/537731207_1535005790814844_4375169288172930374_n.jpg", "D:/youssef/photos/background.jpg"];
+  var descriptions = ["Red Image", "Green Image", "Blue Image"];
+  var i = 0;
+
+  function updateSlide() {
+    document.getElementById("slideImg").src = images[i];
+    document.getElementById("descText").innerText = descriptions[i];
+  }
+  
+  function nextSlide() {
+    if (i < images.length - 1) {
+      i++;
+    } else {
+      i = 0;
+    }
+    updateSlide();
+  }
+
+  function prevSlide() {
+    if (i > 0) {
+      i--;
+    } else {
+      i = images.length - 1; 
+    }
+    updateSlide();
+  }
+
+  updateSlide();
+</script>
+
+</body>
+</html>
